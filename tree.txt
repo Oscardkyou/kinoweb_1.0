@@ -1,0 +1,66 @@
+.
+├── db.sqlite3
+├── kinoticket
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── settings.cpython-311.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   └── wsgi.cpython-311.pyc
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── main
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── admin.cpython-311.pyc
+│   │   ├── apps.cpython-311.pyc
+│   │   ├── models.cpython-311.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   └── views.cpython-311.pyc
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_booking.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── signals.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+├── static
+├── templates
+│   ├── cinema_seats.html
+│   └── index.html
+├── tree.txt
+└── venv
+    ├── bin
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── activate.nu
+    │   ├── activate.ps1
+    │   ├── activate_this.py
+    │   ├── django-admin
+    │   ├── pip
+    │   ├── pip-3.11
+    │   ├── pip3
+    │   ├── pip3.11
+    │   ├── python -> /opt/homebrew/opt/python@3.11/bin/python3.11
+    │   ├── python3 -> python
+    │   ├── python3.11 -> python
+    │   ├── sqlformat
+    │   ├── wheel
+    │   ├── wheel-3.11
+    │   ├── wheel3
+    │   └── wheel3.11
+    ├── lib
+    │   └── python3.11
+    └── pyvenv.cfg
+
+13 directories, 51 files
