@@ -1,22 +1,77 @@
-{% extends 'base.html' %}
-{% block title %}Sing up{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<form class="card shadow-sm text-bg-dark" method="post" 
-    style="width: 1240px; border-radius: 24px; margin: 30px;" 
-    enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.username }}
-    {{ form.first_name }}
-    {{ form.last_name }}
-    {{ form.email }}
-    {{ form.password }}
-    <input type="password" name="password2" 
-    style="margin: 20px; width: 1190px;"
-    class="form-control" placeholder="Repeat password" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
 
-    <button class="btn btn-success" style="width: 1190px; margin: 20px;" 
-    type="submit">Зарегистрироваться</button>
-    <a type="button" href="/" class="btn btn-outline-light" style="width: 1190px; margin: 20px; margin-top: 0;">Назад</a>
-</form>
-{% endblock %}
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-outline-light:hover {
+            color: #28a745;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="card shadow-sm p-4" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group mb-4">
+                        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" class="form-control" value="{{ form.username.value|default:'' }}" placeholder="Username">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="text" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}" class="form-control" value="{{ form.first_name.value|default:'' }}" placeholder="First Name">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="text" name="{{ form.last_name.name }}" id="{{ form.last_name.id_for_label }}" class="form-control" value="{{ form.last_name.value|default:'' }}" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="form-control" value="{{ form.email.value|default:'' }}" placeholder="Email">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" class="form-control" value="{{ form.password.value|default:'' }}" placeholder="Password">
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <input type="password" name="password2" class="form-control" placeholder="Repeat password" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <button class="btn btn-success btn-block" type="submit">Зарегистрироваться</button>
+                    </div>
+                    <div class="form-group">
+                        <a type="button" href="/" class="btn btn-outline-light btn-block">Назад</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

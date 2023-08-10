@@ -3,51 +3,28 @@ from django.contrib.auth.models import User
 from .utils import validate_phone_number
 
 class Profile(models.Model):
-    image = models.ImageField(upload_to="profile/",
-        verbose_name="Фотография", help_text="Картинка должна быть Х на Х",
-        blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # предположим, что здесь есть другие поля...
 
-    balance = models.PositiveIntegerField(default=0, verbose_name="Баланс")
+    def __str__(self):
+        return self.user.username  # Предполагая, что в модели Profile есть поле user.
 
-    phone = models.CharField(max_length=20, unique=True,
-        verbose_name="Номер телефона", blank=True, null=True,
-        validators=[validate_phone_number])
-
-    birth_date = models.DateField(verbose_name="Дата рождения",
-        blank=True, null=True)
-
-    about = models.TextField(max_length=200,
-        verbose_name="Обо мне", blank=True, null=True)
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE,
-        verbose_name="Пользователь")
-
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return f"{self.user.first_name.title()} {self.user.last_name.title()[0]}."
-
-    class Meta:
-        verbose_name = "Профиль"
-        verbose_name_plural = "Профили"
-        ordering = ["-created_at"]
-
-
-class Genre(models.Model):
-    name = models.CharField(max_length=50)
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Категория")
 
     def __str__(self):
         return self.name
 
 class Movie(models.Model):
-    title = models.CharField(max_length=100)
-    duration = models.IntegerField(default=0)
-    description = models.TextField(max_length=200, blank=True, null=True)
-    director = models.CharField(max_length=100, blank=True, null=True)
-    release_year = models.IntegerField(blank=True, null=True)
-    genre = models.ManyToManyField(Genre)
-    poster = models.ImageField(upload_to='posters/', blank=True, null=True)
-    rating = models.FloatField(default=0)
+    title = models.CharField(max_length=100, verbose_name="Название")
+    duration = models.IntegerField(default=0, verbose_name="Длительность")
+    description = models.TextField(max_length=200, blank=True, null=True, verbose_name="Описание")
+    director = models.CharField(max_length=100, blank=True, null=True, verbose_name="Режиссёр")
+    release_year = models.IntegerField(blank=True, null=True, verbose_name="Год выпуска")
+    poster = models.ImageField(upload_to='posters/', blank=True, null=True, verbose_name="Постер")
+    rating = models.FloatField(default=0, verbose_name="Рейтинг")
+    quality = models.CharField(max_length=10, choices=[('HD', 'HD'), ('2K', '2K'), ('4K', '4K')], verbose_name="Качество", default='HD')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, verbose_name="Категория")
 
     def __str__(self):
         return self.title
